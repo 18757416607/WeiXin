@@ -24,6 +24,7 @@ public class TestController {
 	public int test(){
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("name", "aaa");
+		map.put("name1","ttt");
 		map.put("date", new Date());
 		map.put("flag", 1);
 		return iTestConnService.add(map);
