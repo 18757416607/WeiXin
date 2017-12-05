@@ -19,6 +19,13 @@ public class TestController {
 	@Resource
 	private ITestConnService iTestConnService;
 	
+	@RequestMapping(value = "/test")
+	@ResponseBody
+	public String test1(){
+		return "我是i中文0ABC0";
+	}
+	
+	
 	@RequestMapping(value = "/t")
 	@ResponseBody
 	public int test(){

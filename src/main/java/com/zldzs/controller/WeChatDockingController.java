@@ -13,7 +13,7 @@ import com.zldzs.util.MapUtil;
 import com.zldzs.util.Sha1SignUtil;
 
 /**
- * ÓÚÎ¢ĞÅÓ†é‡Ì–Œ¦½Ó,Ô”Çé¿´Î¢ĞÅ¹«±ŠÆ½Å_API
+ * äºå¾®ä¿¡è¨‚é–²è™Ÿå°æ¥,è©³æƒ…çœ‹å¾®ä¿¡å…¬çœ¾å¹³è‡ºAPI
  * @author Administrator
  *
  */
@@ -23,28 +23,28 @@ public class WeChatDockingController {
 
 	
 	/**
-	 * <Î¢ĞÅŒ¦½ÓµÚÒ»²½>
+	 * <å¾®ä¿¡å°æ¥ç¬¬ä¸€æ­¥>
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/weChatDocking")
 	public String weChatDocking(HttpServletRequest request) {
-		String signature = request.getParameter("signature");//Î¢ĞÅ¼ÓÃÜÇ©Ãû£¬signature½áºÏÁË¿ª·¢ÕßÌîĞ´µÄtoken²ÎÊıºÍÇëÇóÖĞµÄtimestamp²ÎÊı¡¢nonce²ÎÊı¡£
-		String timestamp = request.getParameter("timestamp");//Ê±¼ä´Á 
-		String nonce = request.getParameter("nonce");//Ëæ»úÊı
-		String echostr = request.getParameter("echostr");//Ëæ»ú×Ö·û´®
+		String signature = request.getParameter("signature");//å¾®ä¿¡åŠ å¯†ç­¾åï¼Œsignatureç»“åˆäº†å¼€å‘è€…å¡«å†™çš„tokenå‚æ•°å’Œè¯·æ±‚ä¸­çš„timestampå‚æ•°ã€nonceå‚æ•°ã€‚
+		String timestamp = request.getParameter("timestamp");//æ—¶é—´æˆ³ 
+		String nonce = request.getParameter("nonce");//éšæœºæ•°
+		String echostr = request.getParameter("echostr");//éšæœºå­—ç¬¦ä¸²
 		
-		//1.½«token¡¢timestamp¡¢nonceÈı¸ö²ÎÊı½øĞĞ×ÖµäĞòÅÅĞò
+		//1.å°†tokenã€timestampã€nonceä¸‰ä¸ªå‚æ•°è¿›è¡Œå­—å…¸åºæ’åº
 		Map<String, Object> sortMap = new TreeMap<String, Object>();
 		sortMap.put("token", Constant.WX_TOKEN);
 		sortMap.put("timestamp", timestamp);
 		sortMap.put("nonce", nonce);
 		
-		//2.½«Èı¸ö²ÎÊı×Ö·û´®Æ´½Ó³ÉÒ»¸ö×Ö·û´®½øĞĞsha1¼ÓÃÜ
+		//2.å°†ä¸‰ä¸ªå‚æ•°å­—ç¬¦ä¸²æ‹¼æ¥æˆä¸€ä¸ªå­—ç¬¦ä¸²è¿›è¡Œsha1åŠ å¯†
 		String joinStr = MapUtil.MapValueAllJoinStr(sortMap);
 		String signStr = Sha1SignUtil.getSha1(joinStr);
 		
-		//3.¿ª·¢Õß»ñµÃ¼ÓÃÜºóµÄ×Ö·û´®¿ÉÓësignature¶Ô±È£¬±êÊ¶¸ÃÇëÇóÀ´Ô´ÓÚÎ¢ĞÅ
+		//3.å¼€å‘è€…è·å¾—åŠ å¯†åçš„å­—ç¬¦ä¸²å¯ä¸signatureå¯¹æ¯”ï¼Œæ ‡è¯†è¯¥è¯·æ±‚æ¥æºäºå¾®ä¿¡
 		if(signStr.equals(signature)) {
 			return echostr;
 		}
