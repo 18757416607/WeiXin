@@ -3,6 +3,8 @@ package com.zldzs.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zldzs.util.ArrayUtil;
 import com.zldzs.util.Constant;
+import com.zldzs.util.MapUtil;
 import com.zldzs.util.Sha1SignUtil;
 
 /**
@@ -39,20 +42,32 @@ public class WeChatDockingController {
 		String nonce = request.getParameter("nonce");//随机数
 		String echostr = request.getParameter("echostr");//随机字符串
 		
+		System.out.println("微信加密签名:"+signature);
+		System.out.println("时间戳:"+timestamp);
+		System.out.println("随机数:"+nonce);
+		System.out.println("随机字符串:"+echostr);
+		
 		//1.将token、timestamp、nonce三个参数进行字典序排序
 		String[] arr = new String[] {Constant.WX_TOKEN,timestamp,nonce};
 		Arrays.sort(arr);
+		System.out.println("排序的:"+arr);
 		String str = ArrayUtil.arrayToStr(arr);
 		
+		System.out.println("拼接的:"+str);
 		
 		//2.将三个参数字符串拼接成一个字符串进行sha1加密
 		String signStr = Sha1SignUtil.getSha1(str);
 		
+		System.out.println("加密的:"+signStr);
+		System.out.println("微信加密的:"+signature);
 		
 		//3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
 		if(signStr.equals(signature)) {
+			System.out.println("success");
 			PrintWriter out = response.getWriter();
 			out.print(echostr);
+		}else {
+			System.out.println("failed");
 		}
 	}
 	
