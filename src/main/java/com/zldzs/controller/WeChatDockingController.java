@@ -3,8 +3,6 @@ package com.zldzs.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zldzs.util.ArrayUtil;
 import com.zldzs.util.Constant;
-import com.zldzs.util.MapUtil;
 import com.zldzs.util.Sha1SignUtil;
 
 /**
  * 于微信訂閲號對接,詳情看微信公眾平臺API
- * @author Administrator
+ * @author Administrator 
  *
  */
 @Controller
