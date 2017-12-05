@@ -3,14 +3,14 @@ package com.zldzs.util;
 import java.security.MessageDigest;
 
 /**
- * SHA1¼ÓÃÜ¹¤¾ß
+ * SHA1åŠ å¯†å·¥å…·
  * @author Administrator
  *
  */
 public class Sha1SignUtil {
 
 	 /**
-	  * ×Ö·û´®¼ÓÃÜ
+	  * å­—ç¬¦ä¸²åŠ å¯†
 	  * @param str
 	  * @return
 	  */

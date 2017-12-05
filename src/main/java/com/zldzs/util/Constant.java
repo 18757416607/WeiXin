@@ -1,13 +1,13 @@
 package com.zldzs.util;
 
 /**
- * ³£Á¿î
+ * å¸¸é‡é¡
  * @author Administrator
  *
  */
 public class Constant {
 
-	public final static String WX_TOKEN = "NHXQTZZLDZSDYH";//Î¢ĞÅŒ¦½Ótonken
+	public final static String WX_TOKEN = "NHXQTZZLDZSDYH";//å¾®ä¿¡å°æ¥tonken
 	
 	
 }

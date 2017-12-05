@@ -8,7 +8,7 @@ import java.util.Map;
 public class MapUtil {
 
 	/**
-	 * MapÖĞËùÓĞµÄvalue¶¼Æ´½Ó³É×Ö·û´®
+	 * Mapä¸­æ‰€æœ‰çš„valueéƒ½æ‹¼æ¥æˆå­—ç¬¦ä¸²
 	 * @param map
 	 * @return
 	 */
@@ -23,7 +23,7 @@ public class MapUtil {
 	}
 	
 	/**
-	 * MapÖĞµÄËùÓĞvalueÖµ¶¼ßMĞĞutf-8¾´a
+	 * Mapä¸­çš„æ‰€æœ‰valueå€¼éƒ½é€²è¡Œutf-8ç·¨ç¢¼
 	 * @param map
 	 * @return
 	 * @throws UnsupportedEncodingException
