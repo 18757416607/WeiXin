@@ -24,5 +24,6 @@ public class Constant {
 	public final static String WX_MESSAGE_UNSUBSCRIBE = "unsubscribe"; //事件推送   -> 取消关注
 	public final static String WX_MESSAGE_CLICK = "CLICK";  //事件推送  ->菜单点击 
 	public final static String WX_MESSAGE_VIEW = "VIEW";   //事件推送  ->菜单点击 
+	public final static String WX_MESSAGE_NEWS = "news";  //图文消息
 	
 }

@@ -19,6 +19,7 @@ import com.zldzs.util.ArrayUtil;
 import com.zldzs.util.Constant;
 import com.zldzs.util.Sha1SignUtil;
 import com.zldzs.util.XmlUtil;
+import com.zldzs.util.wx.WxMessageUtil;
 
 /**
  * 于微信訂閲號對接,詳情看微信公眾平臺API
@@ -101,23 +102,55 @@ public class WeChatDockingController {
 		String msgType = map.get("MsgType");  //text
 		String content = map.get("Content");  //文本消息内容
 		
-		if("text".equals(msgType)) {  //确认是文本消息
-			//公众号返回消息给某给微信号,这里的fromUsername和toUsername是和上面的接收消息角色相反
-			WxMsg msg = new WxMsg();
-			msg.setFromUserName(toUserName);
-			msg.setToUserName(fromUserName);
-			msg.setCreateTime(new Date().getTime());
-			msg.setMsgType("text");
-			msg.setContent("您发送的消息是:"+content);
+		System.out.println("开发者微信号:"+toUserName);
+		System.out.println("发送方帐号（一个OpenID）:"+fromUserName);
+		System.out.println("类型:"+msgType);
+		System.out.println("文本消息内容:"+content);
+		
+		
+		String rtnMsg = null;
+		if(Constant.WX_MESSAGE_TEXT.equals(msgType)) {  //确认是文本消息
 			
-			String rtnMsg = XmlUtil.objToXml(msg);
+			System.out.println("输入文本消息");
 			
-			System.out.println("rtnMsg:"+rtnMsg);
+			//当用户输入文本消息    这里进行精确匹配
+			if("1".equals(content)) {
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeOne());
+			}else if("2".equals(content)) {
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeTwo());
+			}else if("3".equals(content)) {
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeThree());
+			}else if("?".equals(content)||"？".equals(content)){
+				//用户回复?或者？时再次调用菜单
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
+			}else {
+				//输入的内容不在菜单内就返回用户输入的信息
+				//公众号返回消息给某给微信号,这里的fromUsername和toUsername是和上面的接收消息角色相反
+				WxMsg msg = new WxMsg();
+				msg.setFromUserName(toUserName);
+				msg.setToUserName(fromUserName);
+				msg.setCreateTime(new Date().getTime());
+				msg.setMsgType("text");
+				msg.setContent("您发送的消息是:"+content);
+				
+				rtnMsg = XmlUtil.objToXml(msg);
+			}
+		}else if(Constant.WX_MESSAGE_EVENT.equals(msgType)) {
+			String eventType = map.get("Event");  //获取微信给的参数中的Event就能知道是哪一种推送事件
 			
-			PrintWriter out =  response.getWriter();
-			out.println(rtnMsg);
-			out.close();
+			if(Constant.WX_MESSAGE_SUBSCRIBE.equals(eventType)) {  //关注
+				System.out.println(fromUserName+"用户关注!!!!");
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
+				System.out.println("关注："+rtnMsg);
+			}if(Constant.WX_MESSAGE_SUBSCRIBE.equals(eventType)) {  //取消关注
+				System.out.println(fromUserName+"用户用户取消关注!!!!");
+			}
 		}
+		
+		System.out.println("rtnMsg:"+rtnMsg);
+		PrintWriter out =  response.getWriter();
+		out.println(rtnMsg);
+		out.close();
 	}
 	
 }
