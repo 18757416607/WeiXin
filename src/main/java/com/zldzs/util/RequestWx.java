@@ -15,15 +15,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.zldzs.pojo.AccessToken;
 
 /**
- * ÏòÎ¢ĞÅÇëÇó  »ò    Ìá½»Êı¾İ
+ * å‘å¾®ä¿¡è¯·æ±‚  æˆ–    æäº¤æ•°æ®
  * @author Administrator
  *
  */
 public class RequestWx {
 
 	/**
-	 * get ·½Ê½
-	 * @param getUrl  ÇëÇóµÄurl
+	 * get æ–¹å¼
+	 * @param getUrl  è¯·æ±‚çš„url
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
@@ -42,9 +42,9 @@ public class RequestWx {
 	}
 	
 	/**
-	 * post ·½Ê½
-	 * @param getUrl  ÇëÇóµÄurl
-	 * @param outStr  ĞèÒªÌá½»µÄÊı¾İ   ×Ö·û´®¸ñÊ½
+	 * post æ–¹å¼
+	 * @param getUrl  è¯·æ±‚çš„url
+	 * @param outStr  éœ€è¦æäº¤çš„æ•°æ®   å­—ç¬¦ä¸²æ ¼å¼
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
@@ -65,8 +65,8 @@ public class RequestWx {
 	
 	
 	/**
-	 * »ñÈ¡Î¢ĞÅtoken
-	 * ¶şĞ¡Ê±ºó¹ıÆÚ,±ØĞë×ö·À¹ıÆÚ´¦Àí
+	 * è·å–å¾®ä¿¡token
+	 * äºŒå°æ—¶åè¿‡æœŸ,å¿…é¡»åšé˜²è¿‡æœŸå¤„ç†
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException

@@ -75,5 +75,8 @@
 	</aop:config>  
 	
 	
+	<!-- 当Spring容器启动完成后执行下面的这个Bean -->
+	<bean class="com.zldzs.springInit.InitWxAccessToken"/>
+	
 
 </beans>  
