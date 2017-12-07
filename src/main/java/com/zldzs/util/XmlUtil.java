@@ -14,6 +14,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.thoughtworks.xstream.XStream;
+import com.zldzs.pojo.WxImageTextMsg;
+import com.zldzs.pojo.WxImageTextMsgItem;
 
 
 /**
@@ -61,9 +63,22 @@ public class XmlUtil {
 	public static String objToXml(Object obj) {
 		XStream xstream = new XStream(); 
 		xstream.alias("xml", obj.getClass());
-		String xml = xstream.toXML(obj);
-		return xml;
+		return xstream.toXML(obj);
 	}
+	
+	
+	/**
+	 * 图文消息  实体 转  Xml
+	 * @param obj
+	 * @return
+	 */
+	public static String imageTextInfoToXml(WxImageTextMsg wxImageTextMsg) {
+		XStream xstream = new XStream(); 
+		xstream.alias("xml", wxImageTextMsg.getClass());
+		xstream.alias("item",WxImageTextMsgItem.class);
+		return xstream.toXML(wxImageTextMsg);
+	}
+
 	
 	
 }

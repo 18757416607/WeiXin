@@ -1,23 +1,27 @@
 package com.zldzs.util.wx;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.zldzs.pojo.WxImageTextMsg;
+import com.zldzs.pojo.WxImageTextMsgItem;
 import com.zldzs.pojo.WxMsg;
 import com.zldzs.util.Constant;
 import com.zldzs.util.XmlUtil;
 
 /**
- * Î¢ĞÅµÄÏûÏ¢»Ø¸´Àà
+ * å¾®ä¿¡çš„æ¶ˆæ¯å›å¤ç±»
  * @author Administrator
  *
  */
 public class WxMessageUtil {
 
 	/**
-	 * ¹Ø×¢¹«ÖÚºÅÊ±·¢ËÍµÄÏûÏ¢
-	 * @param toUserName ·¢ËÍ¸øË­
-	 * @param fromUserName  Ë­·¢ËÍµÄ
-	 * @param sendContent   ·¢ËÍµÄÄÚÈİ
+	 * å…³æ³¨å…¬ä¼—å·æ—¶å‘é€çš„æ–‡æœ¬æ¶ˆæ¯
+	 * @param toUserName å‘é€ç»™è°
+	 * @param fromUserName  è°å‘é€çš„
+	 * @param sendContent   å‘é€çš„å†…å®¹
 	 * @return
 	 */
 	public static String subscribeSendInfo(String toUserName,String fromUserName,String sendContent) {
@@ -32,53 +36,78 @@ public class WxMessageUtil {
 	
 	
 	/**
-	 * ÓÃ»§¹Ø×¢¹«ÖÚºÅÊ±»Ø¸´µÄ²Ëµ¥ĞÅÏ¢
+	 * å›¾æ–‡æ¶ˆæ¯
+	 * @param toUserName å‘é€ç»™è°
+	 * @param fromUserName  è°å‘é€çš„
+	 * @param sendContent   å‘é€çš„å†…å®¹
+	 * @return
+	 */
+	public static String ImageTextSendInfo(String toUserName,String fromUserName) {
+		WxImageTextMsg imageTextMsg = new WxImageTextMsg();
+		imageTextMsg.setFromUserName(toUserName);
+		imageTextMsg.setToUserName(fromUserName);
+		imageTextMsg.setCreateTime(new Date().getTime());
+		imageTextMsg.setMsgType(Constant.WX_MESSAGE_NEWS);
+		
+		List<WxImageTextMsgItem> listImageTextMsgImtem = new ArrayList<WxImageTextMsgItem>();
+		WxImageTextMsgItem imageTextMsgItem = new WxImageTextMsgItem();
+		imageTextMsgItem.setTitle("æˆ‘æ˜¯æ ‡é¢˜");
+		imageTextMsgItem.setDescription("æˆ‘æ˜¯æè¿°");
+		imageTextMsgItem.setPicUrl("http://60.205.226.170:80/WeiXin/resource/image/temp_user_img.png");
+		imageTextMsgItem.setUrl("http://www.baidu.com");
+		listImageTextMsgImtem.add(imageTextMsgItem);
+		
+		
+		WxImageTextMsgItem imageTextMsgItem1 = new WxImageTextMsgItem();
+		imageTextMsgItem1.setTitle("æˆ‘æ˜¯å¤§æ¨Ÿæ ‘");
+		imageTextMsgItem1.setDescription("å¤§æ¨Ÿæ ‘");
+		imageTextMsgItem1.setPicUrl("http://60.205.226.170:80/WeiXin/resource/image/dzs.jpg");
+		imageTextMsgItem1.setUrl("http://www.baidu.com");
+		listImageTextMsgImtem.add(imageTextMsgItem1);
+		
+		imageTextMsg.setArticles(listImageTextMsgImtem);
+		imageTextMsg.setArticleCount(listImageTextMsgImtem.size());
+		
+		return XmlUtil.imageTextInfoToXml(imageTextMsg);
+	}
+	
+	
+	
+	/**
+	 * ç”¨æˆ·å…³æ³¨å…¬ä¼—å·æ—¶å›å¤çš„èœå•ä¿¡æ¯
 	 */
 	public static String menuMsg() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("¸ĞĞ»ÄúµÄ¹Ø×¢,ÎÒÃÇ½«ÎªÄúÌá¹©ÄúËùĞèµÄ·şÎñ,Çë°´²Ëµ¥ÌáÊ¾²Ù×÷:\n\n");
-		sb.append("1.¼ÓÈëÎÒÃÇ\n");
-		sb.append("2.·şÎñÀàĞÍ\n");
-		sb.append("3.ÂÒ¸ã\n");
-		sb.append("»Ø¸´ ? ²é¿´²Ëµ¥");
+		sb.append("æ„Ÿè°¢æ‚¨çš„å…³æ³¨,æˆ‘ä»¬å°†ä¸ºæ‚¨æä¾›æ‚¨æ‰€éœ€çš„æœåŠ¡,è¯·æŒ‰èœå•æç¤ºæ“ä½œ:\n");
+		sb.append("1.åŠ å…¥æˆ‘ä»¬\n");
+		sb.append("2.æœåŠ¡ç±»å‹\n");
+		sb.append("3.æ˜¾ç¤ºå›¾æ–‡æ¶ˆæ¯\n");
+		sb.append("å›å¤ ? æŸ¥çœ‹èœå•");
 		return sb.toString();
 	}
 	
 	
 	/**
-	 * ÓÃ»§¸ù¾İ²Ëµ¥   ÊäÈë	1  µÄÊ±ºò»Ø¸´µÄÏûÏ¢
+	 * ç”¨æˆ·æ ¹æ®èœå•   è¾“å…¥	1  çš„æ—¶å€™å›å¤çš„æ¶ˆæ¯
 	 */
 	public static String writeOne() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("¸ĞĞ»ÄúµÄ¹Ø×¢,ÎÒÃÇÊÇ×î×¨ÒµµÄÍÅ¶Ó!\n\n");
-		sb.append("1ÁªÏµ·½Ê½:18757416607\n");
+		sb.append("æ„Ÿè°¢æ‚¨çš„å…³æ³¨,æˆ‘ä»¬æ˜¯æœ€ä¸“ä¸šçš„å›¢é˜Ÿ!\n\n");
+		sb.append("1è”ç³»æ–¹å¼:18757416607\n");
 		sb.append("2.Email:993323226@qq.com\n");
 		return sb.toString();
 	}
 	
 	/**
-	 * ÓÃ»§¸ù¾İ²Ëµ¥   ÊäÈë	2  µÄÊ±ºò»Ø¸´µÄÏûÏ¢
+	 * ç”¨æˆ·æ ¹æ®èœå•   è¾“å…¥	2  çš„æ—¶å€™å›å¤çš„æ¶ˆæ¯
 	 */
 	public static String writeTwo() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("¸ĞĞ»ÄúµÄ¹Ø×¢,ÎÒÃÇÊÇ×î×¨ÒµµÄÍÅ¶Ó!\n\n");
-		sb.append("1.Âò\n");
-		sb.append("1.Âô");
+		sb.append("æ„Ÿè°¢æ‚¨çš„å…³æ³¨,æˆ‘ä»¬æ˜¯æœ€ä¸“ä¸šçš„å›¢é˜Ÿ!\n\n");
+		sb.append("1.ä¹°\n");
+		sb.append("1.å–");
 		return sb.toString();
 	}
 	
-	/**
-	 * ÓÃ»§¸ù¾İ²Ëµ¥   ÊäÈë	3  µÄÊ±ºò»Ø¸´µÄÏûÏ¢
-	 */
-	public static String writeThree() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("¸ĞĞ»ÄúµÄ¹Ø×¢,ÎÒÃÇÊÇ×î×¨ÒµµÄÍÅ¶Ó!\n\n");
-		sb.append("²İ\n");
-		sb.append("ÁË\n");
-		sb.append("¸ö\n");
-		sb.append("D\n");
-		sb.append("J");
-		return sb.toString();
-	}
 	
 }

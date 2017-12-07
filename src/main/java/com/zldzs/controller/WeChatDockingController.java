@@ -119,7 +119,7 @@ public class WeChatDockingController {
 			}else if("2".equals(content)) {
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeTwo());
 			}else if("3".equals(content)) {
-				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeThree());
+				rtnMsg = WxMessageUtil.ImageTextSendInfo(toUserName, fromUserName);
 			}else if("?".equals(content)||"？".equals(content)){
 				//用户回复?或者？时再次调用菜单
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
@@ -142,7 +142,7 @@ public class WeChatDockingController {
 				System.out.println(fromUserName+"用户关注!!!!");
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
 				System.out.println("关注："+rtnMsg);
-			}if(Constant.WX_MESSAGE_SUBSCRIBE.equals(eventType)) {  //取消关注
+			}if(Constant.WX_MESSAGE_UNSUBSCRIBE.equals(eventType)) {  //取消关注
 				System.out.println(fromUserName+"用户用户取消关注!!!!");
 			}
 		}

@@ -1,16 +1,20 @@
 package com.zldzs.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.http.client.ClientProtocolException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zldzs.pojo.AccessToken;
 import com.zldzs.service.ITestConnService;
+import com.zldzs.util.RequestWx;
 
 @Controller
 public class TestController {
@@ -40,6 +44,13 @@ public class TestController {
 		map.put("date", new Date());
 		map.put("flag", 1);
 		return iTestConnService.add(map);
+	}
+	
+	
+	public static void main(String[] args) throws ClientProtocolException, IOException {
+		AccessToken token = RequestWx.getAccessToken();
+		System.out.println(token.getAccess_token());
+		System.out.println(token.getExpires_in());
 	}
 	
 }
