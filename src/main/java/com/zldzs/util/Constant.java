@@ -7,11 +7,15 @@ package com.zldzs.util;
  */
 public class Constant {
 
-	//测试号常量
+	/**
+	 * 测试号常量
+	 */
 	public final static String TEST_WX_APPID = "wxf783a21473d1041b";
 	public final static String TEST_WX_APPSECRET = "caf6368128e249ce28bd3066cd3cd824";
+	//获取微信的Token接口
 	public final static String TEST_WX_GET_ACCESSTOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
-	
+	//新增临时素材接口
+	public final static String TEST_WX_UPLOAD_RESOURCE = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 	
 	//微信接入常量
 	public final static String WX_TOKEN = "nhxqtzzldzsdyh";//微信對接tonken

@@ -114,13 +114,19 @@ public class WeChatDockingController {
 			System.out.println("输入文本消息");
 			
 			//当用户输入文本消息    这里进行精确匹配
-			if("1".equals(content)) {
+			if("1".equals(content)) {   //文本
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeOne());
-			}else if("2".equals(content)) {
-				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.writeTwo());
-			}else if("3".equals(content)) {
+			}else if("2".equals(content)) {  //图片
+				rtnMsg = WxMessageUtil.imageSendInfo(toUserName, fromUserName);
+			}else if("3".equals(content)) {   //图文
 				rtnMsg = WxMessageUtil.ImageTextSendInfo(toUserName, fromUserName);
-			}else if("?".equals(content)||"？".equals(content)){
+			}else if("4".equals(content)){   //语音
+				rtnMsg = WxMessageUtil.voiceSendInfo(toUserName, fromUserName);
+			}else if("5".equals(content)){   //视频
+				rtnMsg = WxMessageUtil.videoSendInfo(toUserName, fromUserName);
+			}/*else if("6".equals(content)){   //  音乐    图片是缩略图
+				rtnMsg = WxMessageUtil.musicSendInfo(toUserName, fromUserName);
+			}*/else if("?".equals(content)||"？".equals(content)){
 				//用户回复?或者？时再次调用菜单
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
 			}else {

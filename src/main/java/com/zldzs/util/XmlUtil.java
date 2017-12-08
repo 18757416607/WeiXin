@@ -79,6 +79,4 @@ public class XmlUtil {
 		return xstream.toXML(wxImageTextMsg);
 	}
 
-	
-	
 }

@@ -36,7 +36,7 @@ public class RequestWx {
 		HttpEntity entity = httpResponse.getEntity();
 		if(entity != null) {
 			String result = EntityUtils.toString(entity,"UTF-8");
-			jsonObject = JSONObject.parseObject(result); 
+			jsonObject = JSONObject.parseObject(result);
 		}
 		return jsonObject;
 	}

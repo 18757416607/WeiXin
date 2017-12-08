@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.zldzs.pojo.WxImage;
+import com.zldzs.pojo.WxImageMsg;
 import com.zldzs.pojo.WxImageTextMsg;
 import com.zldzs.pojo.WxImageTextMsgItem;
 import com.zldzs.pojo.WxMsg;
+import com.zldzs.pojo.WxMusic;
+import com.zldzs.pojo.WxMusicMsg;
+import com.zldzs.pojo.WxVideo;
+import com.zldzs.pojo.WxVideoMsg;
+import com.zldzs.pojo.WxVoice;
+import com.zldzs.pojo.WxVoiceMsg;
 import com.zldzs.util.Constant;
 import com.zldzs.util.XmlUtil;
 
@@ -16,7 +24,24 @@ import com.zldzs.util.XmlUtil;
  *
  */
 public class WxMessageUtil {
-
+	
+	/**
+	 * 用户关注公众号时回复的菜单信息
+	 */
+	public static String menuMsg() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("感谢您的关注,我们将为您提供您所需的服务,请按菜单提示操作:\n");
+		sb.append("1.加入我们\n");
+		sb.append("2.显示图片\n");
+		sb.append("3.显示图文\n");
+		sb.append("4.显示语音\n");
+		sb.append("5.显示视频\n");
+		sb.append("6.显示Music\n");
+		sb.append("回复 ? 查看菜单");
+		return sb.toString();
+	}
+	
+	
 	/**
 	 * 关注公众号时发送的文本消息
 	 * @param toUserName 发送给谁
@@ -32,6 +57,18 @@ public class WxMessageUtil {
 		msg.setMsgType(Constant.WX_MESSAGE_TEXT);
 		msg.setContent(sendContent);
 		return XmlUtil.objToXml(msg);
+	}
+	
+	
+	/**
+	 * 文本消息
+	 */
+	public static String writeOne() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("感谢您的关注,我们是最专业的团队!\n\n");
+		sb.append("1联系方式:18757416607\n");
+		sb.append("2.Email:993323226@qq.com\n");
+		return sb.toString();
 	}
 	
 	
@@ -72,41 +109,83 @@ public class WxMessageUtil {
 	}
 	
 	
+	/**
+	 * 图片消息
+	 * @param toUserName
+	 * @param fromUserName
+	 * @return
+	 */
+	public static String imageSendInfo(String toUserName,String fromUserName) {
+		WxImageMsg imageMsg = new WxImageMsg();
+		imageMsg.setFromUserName(toUserName);
+		imageMsg.setToUserName(fromUserName);
+		imageMsg.setCreateTime(new Date().getTime());
+		imageMsg.setMsgType(Constant.WX_MESSAGE_IMAGE);
+		WxImage wxImage = new WxImage();
+		wxImage.setMediaId("aaXPCSmQOmW2S-HX4TI5eKN3OSLd_e52S1orrtoyh2MZo6igSc_ndc34txfY_DxD");
+		imageMsg.setImage(wxImage);
+		return XmlUtil.objToXml(imageMsg);
+	}
 	
 	/**
-	 * 用户关注公众号时回复的菜单信息
+	 * 语音消息
+	 * @param toUserName
+	 * @param fromUserName
+	 * @return
 	 */
-	public static String menuMsg() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("感谢您的关注,我们将为您提供您所需的服务,请按菜单提示操作:\n");
-		sb.append("1.加入我们\n");
-		sb.append("2.服务类型\n");
-		sb.append("3.显示图文消息\n");
-		sb.append("回复 ? 查看菜单");
-		return sb.toString();
+	public static String voiceSendInfo(String toUserName,String fromUserName) {
+		WxVoiceMsg  wxVoiceMsg = new WxVoiceMsg();
+		wxVoiceMsg.setFromUserName(toUserName);
+		wxVoiceMsg.setToUserName(fromUserName);
+		wxVoiceMsg.setCreateTime(new Date().getTime());
+		wxVoiceMsg.setMsgType(Constant.WX_MESSAGE_VOICE);
+		WxVoice wxVoice = new WxVoice();
+		wxVoice.setMediaId("-urqYn7wlURT-j_4017jCjEqivkXFre-FV7ZiogRNZfkw59qFnLo5psHse8R_n4P");
+		wxVoiceMsg.setVoice(wxVoice);
+		return XmlUtil.objToXml(wxVoiceMsg);
+	}
+	
+	/**
+	 * 视频消息
+	 * @param toUserName
+	 * @param fromUserName
+	 * @return
+	 */
+	public static String videoSendInfo(String toUserName,String fromUserName) {
+		WxVideoMsg  wxVideoMsg = new WxVideoMsg();
+		wxVideoMsg.setFromUserName(toUserName);
+		wxVideoMsg.setToUserName(fromUserName);
+		wxVideoMsg.setCreateTime(new Date().getTime());
+		wxVideoMsg.setMsgType(Constant.WX_MESSAGE_VIDEO);
+		WxVideo wxVideo = new WxVideo();
+		wxVideo.setMediaId("aCBQ5B8bxvgLEqb86UVSKx5-SNbTcnHAFBjL2FImRNuVn2VthreRIYKVLwD_BF07");
+		wxVideo.setTitle("我是视频的标题");
+		wxVideo.setDescription("我是视频的描述");
+		wxVideoMsg.setVideo(wxVideo);
+		return XmlUtil.objToXml(wxVideoMsg);
 	}
 	
 	
 	/**
-	 * 用户根据菜单   输入	1  的时候回复的消息
+	 * 音乐消息
+	 * @param toUserName
+	 * @param fromUserName
+	 * @return
 	 */
-	public static String writeOne() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("感谢您的关注,我们是最专业的团队!\n\n");
-		sb.append("1联系方式:18757416607\n");
-		sb.append("2.Email:993323226@qq.com\n");
-		return sb.toString();
-	}
-	
-	/**
-	 * 用户根据菜单   输入	2  的时候回复的消息
-	 */
-	public static String writeTwo() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("感谢您的关注,我们是最专业的团队!\n\n");
-		sb.append("1.买\n");
-		sb.append("1.卖");
-		return sb.toString();
+	public static String musicSendInfo(String toUserName,String fromUserName) {
+		WxMusicMsg  wxMusicMsg = new WxMusicMsg();
+		wxMusicMsg.setFromUserName(toUserName);
+		wxMusicMsg.setToUserName(fromUserName);
+		wxMusicMsg.setCreateTime(new Date().getTime());
+		wxMusicMsg.setMsgType(Constant.WX_MESSAGE_VIDEO);
+		WxMusic wxMusic = new WxMusic();
+		wxMusic.setThumbMediaId("eTcsLiF5Z2RIr-jn36t1wf4H80s7gizRrwkabqYjWuKjimHeNzOwmHcmxRgJjJWN");
+		wxMusic.setTitle("我是音乐的标题");
+		wxMusic.setDescription("我是音乐的描述");
+		wxMusic.setMusicURL("https://y.qq.com/portal/player.html");
+		wxMusic.setHQMusicUrl("https://y.qq.com/portal/player.html");
+		wxMusicMsg.setMusic(wxMusic);
+		return XmlUtil.objToXml(wxMusicMsg);
 	}
 	
 	
