@@ -1,4 +1,4 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
 
 /**
  * 微信  语音   实体 

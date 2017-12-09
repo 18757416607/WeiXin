@@ -1,4 +1,6 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
+
+import com.zldzs.pojo.BaseMsg;
 
 /**
  *  微信  视频  消息 实体

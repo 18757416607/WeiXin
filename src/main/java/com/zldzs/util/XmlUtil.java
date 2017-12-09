@@ -14,8 +14,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.thoughtworks.xstream.XStream;
-import com.zldzs.pojo.WxImageTextMsg;
-import com.zldzs.pojo.WxImageTextMsgItem;
+import com.zldzs.pojo.message.WxImageTextMsg;
+import com.zldzs.pojo.message.WxImageTextMsgItem;
 
 
 /**

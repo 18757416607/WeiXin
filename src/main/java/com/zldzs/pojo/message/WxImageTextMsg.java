@@ -1,6 +1,8 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
 
 import java.util.List;
+
+import com.zldzs.pojo.BaseMsg;
 
 /**
  * 微信  图文消息  实体

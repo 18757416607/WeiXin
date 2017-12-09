@@ -1,4 +1,4 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
 
 /**
  * 微信   音乐  实体
@@ -10,11 +10,9 @@ public class WxMusic {
 
 	private String Title; //音乐标题
 	private String Description; //音乐描述
-	private String MusicURL;  //音乐链接
+	private String MusicUrl;  //音乐链接
 	private String HQMusicUrl;  //高质量音乐链接，WIFI环境优先使用该链接播放音乐
 	private String ThumbMediaId;   //缩略图的媒体id，通过素材管理中的接口上传多媒体文件，得到的id
-	
-	
 	public String getTitle() {
 		return Title;
 	}
@@ -27,11 +25,11 @@ public class WxMusic {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	public String getMusicURL() {
-		return MusicURL;
+	public String getMusicUrl() {
+		return MusicUrl;
 	}
-	public void setMusicURL(String musicURL) {
-		MusicURL = musicURL;
+	public void setMusicUrl(String musicUrl) {
+		MusicUrl = musicUrl;
 	}
 	public String getHQMusicUrl() {
 		return HQMusicUrl;
@@ -45,4 +43,7 @@ public class WxMusic {
 	public void setThumbMediaId(String thumbMediaId) {
 		ThumbMediaId = thumbMediaId;
 	}
+	
+	
+	
 }

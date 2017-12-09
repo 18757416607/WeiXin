@@ -1,4 +1,4 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
 
 /**
  * 微信  图文消息  子项

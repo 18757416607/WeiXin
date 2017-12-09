@@ -1,4 +1,4 @@
-package com.zldzs.pojo;
+package com.zldzs.pojo.message;
 
 /**
  *  微信  视频    实体

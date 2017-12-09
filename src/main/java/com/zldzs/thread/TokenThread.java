@@ -19,9 +19,9 @@ public class TokenThread implements Runnable {
   
     public void run() {  
         while (true) {  
-        	System.out.println("\n\n获取微信token\n\n");
             try {  
                 accessToken = RequestWx.getAccessToken();  
+                System.out.println("\n\n【获取微信token】:"+accessToken.getAccess_token()+"\n\n");
                 if (null != accessToken) {  
                     // 休眠7000秒  
                     Thread.sleep((accessToken.getExpires_in() - 200) * 1000);  
