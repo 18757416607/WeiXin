@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.zldzs.pojo.WxMsg;
+import com.zldzs.pojo.message.WxMsg;
 import com.zldzs.util.ArrayUtil;
 import com.zldzs.util.Constant;
 import com.zldzs.util.Sha1SignUtil;
@@ -86,7 +86,6 @@ public class WeChatDockingController {
 	 */
 	@RequestMapping(value = "/weChatDocking",method = RequestMethod.POST)
 	public void weChatDockingPost(HttpServletRequest request,HttpServletResponse response) throws IOException, DocumentException {
-		System.out.println("进入消息回复");
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -102,16 +101,16 @@ public class WeChatDockingController {
 		String msgType = map.get("MsgType");  //text
 		String content = map.get("Content");  //文本消息内容
 		
-		System.out.println("开发者微信号:"+toUserName);
-		System.out.println("发送方帐号（一个OpenID）:"+fromUserName);
-		System.out.println("类型:"+msgType);
-		System.out.println("文本消息内容:"+content);
+		System.out.println("【开发者微信号】:"+toUserName);
+		System.out.println("【发送方帐号（一个OpenID）】:"+fromUserName);
+		System.out.println("【类型】:"+msgType);
+		System.out.println("【文本消息内容】:"+content);
 		
 		
 		String rtnMsg = null;
-		if(Constant.WX_MESSAGE_TEXT.equals(msgType)) {  //确认是文本消息
+		if(Constant.WX_MESSAGE_TEXT.equals(msgType)) {  //文本消息
 			
-			System.out.println("输入文本消息");
+			System.out.println("【进入消息回复】");
 			
 			//当用户输入文本消息    这里进行精确匹配
 			if("1".equals(content)) {   //文本
@@ -124,9 +123,9 @@ public class WeChatDockingController {
 				rtnMsg = WxMessageUtil.voiceSendInfo(toUserName, fromUserName);
 			}else if("5".equals(content)){   //视频
 				rtnMsg = WxMessageUtil.videoSendInfo(toUserName, fromUserName);
-			}/*else if("6".equals(content)){   //  音乐    图片是缩略图
+			}else if("6".equals(content)){   //  音乐    图片是缩略图
 				rtnMsg = WxMessageUtil.musicSendInfo(toUserName, fromUserName);
-			}*/else if("?".equals(content)||"？".equals(content)){
+			}else if("?".equals(content)||"？".equals(content)){
 				//用户回复?或者？时再次调用菜单
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
 			}else {
@@ -137,20 +136,35 @@ public class WeChatDockingController {
 				msg.setToUserName(fromUserName);
 				msg.setCreateTime(new Date().getTime());
 				msg.setMsgType("text");
-				msg.setContent("您发送的消息是:"+content);
+				msg.setContent("【您发送的消息是】:"+content);
 				
 				rtnMsg = XmlUtil.objToXml(msg);
 			}
 		}else if(Constant.WX_MESSAGE_EVENT.equals(msgType)) {
 			String eventType = map.get("Event");  //获取微信给的参数中的Event就能知道是哪一种推送事件
 			
+			System.out.println("【Event类型中的什么事件】:"+eventType);
+			
 			if(Constant.WX_MESSAGE_SUBSCRIBE.equals(eventType)) {  //关注
-				System.out.println(fromUserName+"用户关注!!!!");
+				System.out.println(fromUserName+"\n【用户关注!!!!】");
 				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
 				System.out.println("关注："+rtnMsg);
-			}if(Constant.WX_MESSAGE_UNSUBSCRIBE.equals(eventType)) {  //取消关注
-				System.out.println(fromUserName+"用户用户取消关注!!!!");
+			}else if(Constant.WX_MESSAGE_UNSUBSCRIBE.equals(eventType)) {  //取消关注
+				System.out.println(fromUserName+"\n【用户用户取消关注!!!!】");
+			}else if(Constant.WX_BUTTON_CLICK.equals(eventType)) {   // Click
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName, WxMessageUtil.menuMsg());
+			}else if(Constant.WX_BUTTON_VIEW.equals(eventType)) {   // View   把获取到的信息做自己的业务处理
+				/*String url = map.get("EventKey");   
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName,url);*/
+			}else if(Constant.WX_BUTTON_SCANCODE.equals(eventType)) {   // 扫码事件   业务处理:如扫码后把扫码的信息存储到数据库
+				/*String key = map.get("EventKey");
+				rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName,key);*/
 			}
+		}else if(Constant.WX_MESSAGE_LOCATION.equals(msgType)||Constant.WX_MESSAGE_LOCATION1.equals(msgType)) {  //地理位置
+			
+			String Lable = map.get("Label");
+			System.out.println("【获取地理位置】"+Lable);
+			rtnMsg = WxMessageUtil.subscribeSendInfo(toUserName, fromUserName,Lable);
 		}
 		
 		System.out.println("rtnMsg:"+rtnMsg);

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.zldzs.pojo.WxImage;
-import com.zldzs.pojo.WxImageMsg;
-import com.zldzs.pojo.WxImageTextMsg;
-import com.zldzs.pojo.WxImageTextMsgItem;
-import com.zldzs.pojo.WxMsg;
-import com.zldzs.pojo.WxMusic;
-import com.zldzs.pojo.WxMusicMsg;
-import com.zldzs.pojo.WxVideo;
-import com.zldzs.pojo.WxVideoMsg;
-import com.zldzs.pojo.WxVoice;
-import com.zldzs.pojo.WxVoiceMsg;
+import com.zldzs.pojo.message.WxImage;
+import com.zldzs.pojo.message.WxImageMsg;
+import com.zldzs.pojo.message.WxImageTextMsg;
+import com.zldzs.pojo.message.WxImageTextMsgItem;
+import com.zldzs.pojo.message.WxMsg;
+import com.zldzs.pojo.message.WxMusic;
+import com.zldzs.pojo.message.WxMusicMsg;
+import com.zldzs.pojo.message.WxVideo;
+import com.zldzs.pojo.message.WxVideoMsg;
+import com.zldzs.pojo.message.WxVoice;
+import com.zldzs.pojo.message.WxVoiceMsg;
 import com.zldzs.util.Constant;
 import com.zldzs.util.XmlUtil;
 
@@ -66,8 +66,9 @@ public class WxMessageUtil {
 	public static String writeOne() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("感谢您的关注,我们是最专业的团队!\n\n");
-		sb.append("1联系方式:18757416607\n");
-		sb.append("2.Email:993323226@qq.com\n");
+		sb.append("联系方式:18757416607\n");
+		sb.append("Email:993323226@qq.com\n");
+		sb.append("<a>www.baidu.com</a>\n");
 		return sb.toString();
 	}
 	
@@ -177,13 +178,13 @@ public class WxMessageUtil {
 		wxMusicMsg.setFromUserName(toUserName);
 		wxMusicMsg.setToUserName(fromUserName);
 		wxMusicMsg.setCreateTime(new Date().getTime());
-		wxMusicMsg.setMsgType(Constant.WX_MESSAGE_VIDEO);
+		wxMusicMsg.setMsgType(Constant.WX_MESSAGE_MUSIC);
 		WxMusic wxMusic = new WxMusic();
 		wxMusic.setThumbMediaId("eTcsLiF5Z2RIr-jn36t1wf4H80s7gizRrwkabqYjWuKjimHeNzOwmHcmxRgJjJWN");
 		wxMusic.setTitle("我是音乐的标题");
 		wxMusic.setDescription("我是音乐的描述");
-		wxMusic.setMusicURL("https://y.qq.com/portal/player.html");
-		wxMusic.setHQMusicUrl("https://y.qq.com/portal/player.html");
+		wxMusic.setMusicUrl("http://60.205.226.170:80/WeiXin/resource/music/1.mp3");
+		wxMusic.setHQMusicUrl("http://60.205.226.170:80/WeiXin/resource/music/1.mp3");
 		wxMusicMsg.setMusic(wxMusic);
 		return XmlUtil.objToXml(wxMusicMsg);
 	}
