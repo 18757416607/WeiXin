@@ -40,7 +40,7 @@ public class WxFileUpload {
 			throw new IOException("文件不存在");
 		}
 		
-		String url = Constant.TEST_WX_UPLOAD_RESOURCE.replace("ACCESS_TOKEN", access_token).replace("TYPE", type);
+		String url = Constant.WX_UPLOAD_RESOURCE.replace("ACCESS_TOKEN", access_token).replace("TYPE", type);
 		
 		URL urlObj = new URL(url);
 	

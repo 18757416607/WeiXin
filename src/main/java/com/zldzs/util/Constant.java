@@ -7,23 +7,19 @@ package com.zldzs.util;
  */
 public class Constant {
 
-	/**
-	 * 测试号常量
-	 */
-	public final static String TEST_WX_APPID = "wxf783a21473d1041b";
-	public final static String TEST_WX_APPSECRET = "caf6368128e249ce28bd3066cd3cd824";
 	//获取微信的Token接口
-	public final static String TEST_WX_GET_ACCESSTOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	public final static String WX_GET_ACCESSTOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 	//新增临时素材接口
-	public final static String TEST_WX_UPLOAD_RESOURCE = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+	public final static String WX_UPLOAD_RESOURCE = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 	//自定义创建菜单接口
-	public final static String TEST_WX_INIT_MENU = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+	public final static String WX_INIT_MENU = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 	
 	
 	//微信接入常量
-	public final static String WX_TOKEN = "nhxqtzzldzsdyh";//微信對接tonken
-	public final static String WX_APPSECRET = "1094b8e62bcc4ee65f9aaafda58a2669";  //微信開發者密碼
-	public final static String WX_ENCODINGAESKEY  = "UOcAmTNBSk8P2XOrYU7GkDn8KgjyBZm1hh4OsE8Ed0b"; //消息加解密密钥
+	public final static String WX_APPID = "wxaca748f2d713f2c2"; //APPID
+	public final static String WX_TOKEN = "nhxqtzzldzsgzh";//微信對接tonken
+	public final static String WX_APPSECRET = "9e130a42fcd8cb766875dca29ea4603c";  //微信開發者密碼
+	public final static String WX_ENCODINGAESKEY  = "tLb4mbgpXAibldu2aNMtlvWJTCy0Du2YCIE2GYUtOKD"; //消息加解密密钥
 	
 	//微信消息类型常量
 	public final static String WX_MESSAGE_TEXT = "text";  //文本消息

@@ -20,7 +20,7 @@ public class ButtonInit {
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		AccessToken token = RequestWx.getAccessToken();
-		String create_menu_url = Constant.TEST_WX_INIT_MENU.replace("ACCESS_TOKEN", token.getAccess_token());
+		String create_menu_url = Constant.WX_INIT_MENU.replace("ACCESS_TOKEN", token.getAccess_token());
 		
 		Menu menu = WxMenuButtonUtil.initMenu();
 		String str_menu = JSONObject.toJSONString(menu);

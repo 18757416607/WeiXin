@@ -73,7 +73,7 @@ public class RequestWx {
 	 */
 	public static AccessToken getAccessToken() throws ClientProtocolException, IOException {
 		AccessToken token = new AccessToken();
-		String url = Constant.TEST_WX_GET_ACCESSTOKEN_URL.replace("APPID", Constant.TEST_WX_APPID).replace("APPSECRET", Constant.TEST_WX_APPSECRET);
+		String url = Constant.WX_GET_ACCESSTOKEN_URL.replace("APPID", Constant.WX_APPID).replace("APPSECRET", Constant.WX_APPSECRET);
 		JSONObject jsonObject = RequestWx.doGetWx(url);
 		System.out.println("map:"+jsonObject);
 		if(jsonObject != null){
