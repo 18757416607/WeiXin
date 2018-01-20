@@ -21,12 +21,12 @@ public class WxMenuButtonUtil {
 		
 		ClickButton cButton = new ClickButton();
 		cButton.setName("显示菜单");
-		cButton.setType(Constant.WX_BUTTON_CLICK);
+		cButton.setType(Constant.WX_BUTTON_CLICK1);
 		cButton.setKey("click1");
 		
 		ViewButton viewButton = new ViewButton();
 		viewButton.setName("去nexus");
-		viewButton.setType(Constant.WX_BUTTON_VIEW);
+		viewButton.setType(Constant.WX_BUTTON_VIEW1);
 		viewButton.setUrl("http://60.205.226.170:8081/nexus/");
 		
 		ClickButton cButton2 = new ClickButton();

@@ -35,6 +35,7 @@ public class Constant {
 	
 	//微信按钮类型常量
 	public final static String WX_BUTTON_CLICK = "CLICK";  //事件推送  ->菜单点击
+	public final static String WX_BUTTON_CLICK1 = "click";  //事件推送  ->菜单点击
 	//扫码推事件用户点击按钮后，微信客户端将调起扫一扫工具，完成扫码操作后显示扫描结果（如果是URL，将进入URL），且会将扫码的结果传给开发者，开发者可以下发消息。
 	public final static String WX_BUTTON_SCANCODE_PUSH = "scancode_push"; 
 	//弹出地理位置选择器用户点击按钮后，微信客户端将调起地理位置选择工具，完成选择操作后，将选择的地理位置发送给开发者的服务器，同时收起位置选择工具，随后可能会收到开发者下发的消息
@@ -44,6 +45,7 @@ public class Constant {
 	public final static String WX_MESSAGE_LOCATION1 = "location_select"; //地址位置消息
 	
 	public final static String WX_BUTTON_VIEW = "VIEW";   //事件推送  ->菜单点击 
+	public final static String WX_BUTTON_VIEW1 = "view";   //事件推送  ->菜单点击 
 	
 	
 }
